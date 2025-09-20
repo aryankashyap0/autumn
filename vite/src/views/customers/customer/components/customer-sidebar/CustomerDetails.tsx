@@ -24,13 +24,13 @@ export const CustomerDetails = ({
   return (
     <div className="flex w-full border-b mt-[2.5px] p-4">
       <SideAccordion title="Details" value="details">
-        <div className="grid grid-cols-8 auto-rows-[16px] gap-y-4 w-full items-center">
+        <div className="grid grid-cols-3 gap-y-4 gap-x-2 w-full items-center min-w-0">
           <SidebarLabel>ID</SidebarLabel>
-          <div className="col-span-6 justify-end flex">
-            <div className="w-full flex justify-end">
+          <div className="col-span-2 justify-end flex min-w-0">
+            <div className="w-full flex justify-end min-w-0">
               {customer.id ? (
-                <CopyButton text={customer.id} className="">
-                  {customer.id}
+                <CopyButton text={customer.id} className="max-w-full">
+                  <span className="truncate max-w-full block">{customer.id}</span>
                 </CopyButton>
               ) : (
                 <Button
@@ -39,6 +39,7 @@ export const CustomerDetails = ({
                     setIsModalOpen(true);
                     setModalType("customer");
                   }}
+                  className="min-w-0"
                 >
                   <span className="truncate text-t3">N/A</span>
                 </Button>
@@ -47,30 +48,34 @@ export const CustomerDetails = ({
           </div>
 
           <span className="text-t3 text-xs font-medium col-span-2">Name</span>
-          <div className="col-span-6 justify-end flex">
+          <div className="col-span-6 justify-end flex min-w-0">
             <Button
               variant="sidebarItem"
               onClick={() => {
                 setIsModalOpen(true);
                 setModalType("customer");
               }}
+              className="min-w-0 max-w-full"
+              title={customer.name || "None"}
             >
-              <span className="truncate">
+              <span className="truncate max-w-full">
                 {customer.name || <span className="text-t3">None</span>}
               </span>
             </Button>
           </div>
 
           <span className="text-t3 text-xs font-medium col-span-2">Email</span>
-          <div className="col-span-6 justify-end flex">
+          <div className="col-span-6 justify-end flex min-w-0">
             <Button
               variant="sidebarItem"
               onClick={() => {
                 setIsModalOpen(true);
                 setModalType("customer");
               }}
+              className="min-w-0 max-w-full"
+              title={customer.email || "None"}
             >
-              <span className="truncate">
+              <span className="truncate max-w-full">
                 {customer.email || <span className="text-t3">None</span>}
               </span>
             </Button>

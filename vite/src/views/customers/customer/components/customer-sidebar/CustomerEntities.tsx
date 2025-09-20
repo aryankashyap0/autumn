@@ -40,11 +40,11 @@ export const CustomerEntities = () => {
         <div className="grid grid-cols-8 auto-rows-[16px] gap-y-4 w-full items-center ">
           {/* <SelectEntity /> */}
           <SidebarLabel>ID</SidebarLabel>
-          <div className="col-span-6 justify-end flex">
-            <div className="w-full flex justify-end">
+          <div className="col-span-6 justify-end flex min-w-0">
+            <div className="w-full flex justify-end min-w-0">
               {entity.id ? (
-                <CopyButton text={entity?.id} className="">
-                  {entity?.id}
+                <CopyButton text={entity?.id} className="max-w-full">
+                  <span className="truncate max-w-full block">{entity?.id}</span>
                 </CopyButton>
               ) : (
                 <span className="px-1 text-t3">N/A</span>
@@ -54,12 +54,16 @@ export const CustomerEntities = () => {
           {entity && (
             <>
               <SidebarLabel>Name</SidebarLabel>
-              <div className="col-span-6 flex justify-end">
-                <span className="truncate">{entity?.name}</span>
+              <div className="col-span-6 flex justify-end min-w-0">
+                <span className="truncate max-w-full" title={entity?.name}>
+                  {entity?.name}
+                </span>
               </div>
               <SidebarLabel>Feature</SidebarLabel>
-              <div className="col-span-6 flex justify-end">
-                {featureName.toLowerCase()}
+              <div className="col-span-6 flex justify-end min-w-0">
+                <span className="truncate max-w-full" title={featureName.toLowerCase()}>
+                  {featureName.toLowerCase()}
+                </span>
               </div>
             </>
           )}

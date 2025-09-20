@@ -64,16 +64,19 @@ export const CustomerRewards = () => {
             <span className="text-t3 text-xs font-medium col-span-2 h-4">
               Coupon
             </span>
-            <div className="col-span-6 flex justify-end">
+            <div className="col-span-6 flex justify-end min-w-0">
               <Button
                 variant="sidebarItem"
                 onClick={() => setIsModalOpen(true)}
+                className="min-w-0 max-w-full"
               >
-                {stripeCus?.discount ? (
-                  getDiscountText(stripeCus?.discount)
-                ) : (
-                  <span className="text-t3">Add Coupon</span>
-                )}
+                <div className="truncate max-w-full">
+                  {stripeCus?.discount ? (
+                    getDiscountText(stripeCus?.discount)
+                  ) : (
+                    <span className="text-t3">Add Coupon</span>
+                  )}
+                </div>
               </Button>
             </div>
           </>

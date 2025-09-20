@@ -19,10 +19,12 @@ export const CustomerSidebar = () => {
   const [modalType, setModalType] = useState("coupon");
 
   return (
-    <div className="flex-col gap-4 h-full border-l py-2 whitespace-nowrap text-t2">
-      <div className="flex w-full justify-end px-4">
+    <div className="flex flex-col h-full border-l text-t2 overflow-hidden min-w-[280px] w-full">
+      {/* Fixed header section */}
+      <div className="flex-shrink-0 flex w-full justify-end px-4 py-2 border-b">
         <CustomerToolbar customer={customer} />
       </div>
+      
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <UpdateCustomerDialog
           selectedCustomer={customer}
@@ -30,24 +32,28 @@ export const CustomerSidebar = () => {
           setOpen={setIsModalOpen}
         />
       </Dialog>
-      <div className="px-4 mb-4 space-y-4">
-        <CustomerCreditBalance />
-        <CustomerAutoTopUpConfig />
-        <AutoTopUpHistory />
-      </div>
       
-      <Accordion
-        type="multiple"
-        className="w-full flex flex-col"
-        defaultValue={["details", "rewards", "entities"]}
-      >
-        <CustomerDetails
-          setIsModalOpen={setIsModalOpen}
-          setModalType={setModalType}
-        />
-        <CustomerRewards />
-        {entities.length > 0 && <CustomerEntities />}
-      </Accordion>
+      {/* Scrollable content area */}
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 pt-4 pb-2 space-y-4">
+          <CustomerCreditBalance />
+          <CustomerAutoTopUpConfig />
+          <AutoTopUpHistory />
+        </div>
+        
+        <Accordion
+          type="multiple"
+          className="w-full flex flex-col"
+          defaultValue={["details", "rewards", "entities"]}
+        >
+          <CustomerDetails
+            setIsModalOpen={setIsModalOpen}
+            setModalType={setModalType}
+          />
+          <CustomerRewards />
+          {entities.length > 0 && <CustomerEntities />}
+        </Accordion>
+      </div>
     </div>
   );
 };
