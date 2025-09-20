@@ -23,6 +23,8 @@ import { createStripeCusIfNotExists } from "@/external/stripe/stripeCusUtils.js"
 import { handleTransferProduct } from "./handlers/handleTransferProduct.js";
 import { handleBatchCustomers } from "../api/batch/handlers/handleBatchCustomers.js";
 import { toSuccessUrl } from "../orgs/orgUtils/convertOrgUtils.js";
+import { handleUpdateAutoTopUpConfig } from "./handlers/handleUpdateAutoTopUpConfig.js";
+import { handleGetAutoTopUpHistory } from "./handlers/handleGetAutoTopUpHistory.js";
 
 export const cusRouter: Router = Router();
 
@@ -162,6 +164,9 @@ cusRouter.get("/:customer_id/billing_portal", async (req: any, res: any) => {
 cusRouter.post("/:customer_id/billing_portal", handleCreateBillingPortal);
 
 cusRouter.post("/:customer_id/coupons/:coupon_id", handleAddCouponToCus);
+
+cusRouter.post("/:customer_id/auto-top-up-config", handleUpdateAutoTopUpConfig);
+cusRouter.get("/:customer_id/auto-top-up-history", handleGetAutoTopUpHistory);
 
 cusRouter.use("/:customer_id/entities", entityRouter);
 

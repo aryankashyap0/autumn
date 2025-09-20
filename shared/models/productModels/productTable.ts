@@ -34,6 +34,13 @@ export const products = pgTable(
       .default(sql`null`),
     base_variant_id: text("base_variant_id"),
     archived: boolean("archived").notNull().default(false),
+    auto_top_up: jsonb("auto_top_up").$type<{
+      enabled: boolean;
+      threshold?: number;
+      topUpAmount?: number;
+      priceId?: string;
+      maxTopUpsPerMonth?: number;
+    }>().default(sql`null`),
   },
   (table) => [
     foreignKey({

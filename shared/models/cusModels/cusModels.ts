@@ -14,6 +14,12 @@ export const CustomerSchema = z.object({
   env: z.nativeEnum(AppEnv),
   processor: z.any(),
   metadata: z.record(z.any(), z.any()).nullish().default({}),
+  auto_top_up_config: z.object({
+    enabled: z.boolean(),
+    threshold: z.number(),
+    topUpAmount: z.number(),
+    maxTopUpsPerMonth: z.number(),
+  }).nullish(),
 });
 
 export const CreateCustomerSchema = z.object({

@@ -35,6 +35,9 @@ export const CreateProductSchema = z.object({
   is_default: z.boolean().default(false),
   version: z.number().optional().default(1),
   group: z.string().optional().default(""),
+  auto_top_up: z.object({
+    enabled: z.boolean().default(false),
+  }).nullish(),
 });
 
 export const UpdateProductSchema = z.object({
@@ -44,6 +47,13 @@ export const UpdateProductSchema = z.object({
   is_default: z.boolean().optional(),
   group: z.string().optional(),
   archived: z.boolean().optional(),
+  auto_top_up: z.object({
+    enabled: z.boolean(),
+    threshold: z.number().optional(),
+    topUpAmount: z.number().optional(),
+    priceId: z.string().optional(),
+    maxTopUpsPerMonth: z.number().optional(),
+  }).nullish(),
 });
 
 export const FrontendProductSchema = ProductSchema.omit({

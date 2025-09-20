@@ -18,6 +18,10 @@ export * from "./models/orgModels/frontendOrg.js";
 export * from "./models/featureModels/featureTable.js";
 export * from "./models/featureModels/featureEnums.js";
 export * from "./models/featureModels/featureModels.js";
+
+// 2.1. Auto Top-Up Models
+export * from "./models/autoTopUpModels/autoTopUpTable.js";
+export * from "./models/productV2Models/autoTopUpModels.js";
 export * from "./models/featureModels/featureResModels.js";
 export * from "./models/featureModels/featureConfig/meteredConfig.js";
 export * from "./models/featureModels/featureConfig/creditConfig.js";

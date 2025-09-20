@@ -5,6 +5,7 @@ import { getSingleEntityResponse } from "@/internal/api/entities/getEntityUtils.
 import { getV2CheckResponse } from "@/internal/api/entitled/checkUtils/getV2CheckResponse.js";
 import { getCustomerDetails } from "@/internal/customers/cusUtils/getCustomerDetails.js";
 import { toAPIFeature } from "@/internal/features/utils/mapFeatureUtils.js";
+import { AutoTopUpService } from "@/internal/autoTopUp/AutoTopUpService.js";
 import {
   FullCusEntWithFullCusProduct,
   Feature,
@@ -260,6 +261,16 @@ export const handleThresholdReached = async ({
       logger.info(
         "Sent Svix event for threshold reached (type: limit_reached)"
       );
+
+      // Check for auto top-up eligibility
+      await checkAndProcessAutoTopUp({
+        db,
+        fullCus,
+        org,
+        env,
+        logger,
+      });
+
       return;
     }
     await handleAllowanceUsed({
@@ -278,6 +289,62 @@ export const handleThresholdReached = async ({
     logger.error("Failed to handle threshold reached", {
       error,
       message: error?.message,
+    });
+  }
+};
+
+/**
+ * Check and process auto top-up for customer
+ */
+const checkAndProcessAutoTopUp = async ({
+  db,
+  fullCus,
+  org,
+  env,
+  logger,
+}: {
+  db: DrizzleCli;
+  fullCus: FullCustomer;
+  org: Organization;
+  env: AppEnv;
+  logger: any;
+}) => {
+  try {
+    // Find auto top-up products for this customer
+    const autoTopUpProducts = fullCus.customer_products.filter(
+      (cp) => cp.product.auto_top_up?.enabled
+    );
+
+    if (autoTopUpProducts.length === 0) {
+      logger.info(`No auto top-up products found for customer ${fullCus.id}`);
+      return;
+    }
+
+    // Process auto top-up for each product
+    for (const product of autoTopUpProducts) {
+      const result = await AutoTopUpService.processAutoTopUp({
+        db,
+        customerId: fullCus.id,
+        productId: product.product_id,
+        org,
+        env: env as string,
+        logger,
+      });
+
+      if (result.success) {
+        logger.info(
+          `Auto top-up successful for customer ${fullCus.id}, product ${product.product_id}`
+        );
+      } else {
+        logger.warn(
+          `Auto top-up failed for customer ${fullCus.id}, product ${product.product_id}: ${result.error}`
+        );
+      }
+    }
+  } catch (error: any) {
+    logger.error("Failed to check auto top-up", {
+      error: error.message,
+      customerId: fullCus.id,
     });
   }
 };

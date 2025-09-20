@@ -6,6 +6,9 @@ import { CustomerRewards } from "./customer-rewards";
 import { CustomerToolbar } from "../../CustomerToolbar";
 import { CustomerDetails } from "./CustomerDetails";
 import { CustomerEntities } from "./CustomerEntities";
+import { CustomerCreditBalance } from "./CustomerCreditBalance";
+import { CustomerAutoTopUpConfig } from "./CustomerAutoTopUpConfig";
+import { AutoTopUpHistory } from "../AutoTopUpHistory";
 import { useCusQuery } from "../../hooks/useCusQuery";
 
 export const CustomerSidebar = () => {
@@ -27,6 +30,12 @@ export const CustomerSidebar = () => {
           setOpen={setIsModalOpen}
         />
       </Dialog>
+      <div className="px-4 mb-4 space-y-4">
+        <CustomerCreditBalance />
+        <CustomerAutoTopUpConfig />
+        <AutoTopUpHistory />
+      </div>
+      
       <Accordion
         type="multiple"
         className="w-full flex flex-col"

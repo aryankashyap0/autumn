@@ -17,4 +17,10 @@ export type FullCustomer = Customer & {
   invoices?: Invoice[];
   subscriptions?: Subscription[];
   events?: Event[];
+  auto_top_up_config?: {
+    enabled: boolean;
+    threshold: number;
+    topUpAmount: number;
+    maxTopUpsPerMonth: number;
+  } | null;
 };

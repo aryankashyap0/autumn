@@ -97,6 +97,7 @@ export const mapToProductV2 = ({
     items: items,
     stripe_id: product.processor?.id || null,
     archived: product.archived || false,
+    auto_top_up: product.auto_top_up,
   };
 
   return productV2;

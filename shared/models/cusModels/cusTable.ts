@@ -29,6 +29,12 @@ export const customers = pgTable(
 
     env: text().notNull(),
     processor: jsonb().$type<CustomerProcessor>(),
+    auto_top_up_config: jsonb("auto_top_up_config").$type<{
+      enabled: boolean;
+      threshold: number;
+      topUpAmount: number;
+      maxTopUpsPerMonth: number;
+    }>(),
   },
   (table) => [
     unique("cus_id_constraint").on(table.org_id, table.id, table.env),

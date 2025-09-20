@@ -37,6 +37,9 @@ import { rewardRedemptions } from "../models/rewardModels/referralModels/rewardR
 import { migrationJobs } from "../models/migrationModels/migrationJobTable.js";
 import { migrationErrors } from "../models/migrationModels/migrationErrorTable.js";
 
+// Auto Top-Up Tables
+import { autoTopUpHistory } from "../models/autoTopUpModels/autoTopUpTable.js";
+
 /* RELATIONS */
 import { organizationsRelations } from "../models/orgModels/orgRelations.js";
 import { featureRelations } from "../models/featureModels/featureRelations.js";
@@ -109,6 +112,7 @@ export {
   rewardRedemptions,
   migrationJobs,
   migrationErrors,
+  autoTopUpHistory,
   actions,
   events,
   replaceables,

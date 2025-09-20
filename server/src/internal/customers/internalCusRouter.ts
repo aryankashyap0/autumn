@@ -23,6 +23,7 @@ import { routeHandler } from "@/utils/routerUtils.js";
 import { CusSearchService } from "./CusSearchService.js";
 import { CusBatchService } from "../api/batch/CusBatchService.js";
 import { ACTIVE_STATUSES } from "./cusProducts/CusProductService.js";
+import { handleGetAutoTopUpHistory } from "./handlers/handleGetAutoTopUpHistory.js";
 
 export const cusRouter: Router = Router();
 
@@ -364,3 +365,5 @@ cusRouter.get("/:customer_id/sub", async (req: any, res: any) => {
     handleFrontendReqError({ req, error, res, action: "get customer rewards" });
   }
 });
+
+cusRouter.get("/:customer_id/auto-top-up-history", handleGetAutoTopUpHistory);

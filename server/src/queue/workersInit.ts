@@ -14,6 +14,7 @@ import { acquireLock, getRedisConnection, releaseLock } from "./lockUtils.js";
 import { runActionHandlerTask } from "@/internal/analytics/runActionHandlerTask.js";
 import { logger } from "@/external/logtail/logtailUtils.js";
 import { detectBaseVariant } from "@/internal/products/productUtils/detectProductVariant.js";
+import { AutoTopUpService } from "@/internal/autoTopUp/AutoTopUpService.js";
 import { Logger } from "pino";
 import { generateId } from "@/utils/genUtils.js";
 
@@ -65,6 +66,18 @@ const initWorker = ({
           await runSaveFeatureDisplayTask({
             db,
             feature: job.data.feature,
+            logger: logtail,
+          });
+          return;
+        }
+
+        if (job.name == JobName.AutoTopUp) {
+          await AutoTopUpService.processAutoTopUp({
+            db,
+            customerId: job.data.customerId,
+            productId: job.data.productId,
+            org: job.data.org,
+            env: job.data.env,
             logger: logtail,
           });
           return;

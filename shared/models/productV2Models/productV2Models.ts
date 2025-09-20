@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { FreeTrialSchema } from "../productModels/freeTrialModels/freeTrialModels.js";
 import { ProductItemSchema } from "./productItemModels/productItemModels.js";
+import { AutoTopUpConfigSchema } from "./autoTopUpModels.js";
 
 export const ProductV2Schema = z.object({
   internal_id: z.string().nullish(),
@@ -17,6 +18,9 @@ export const ProductV2Schema = z.object({
   created_at: z.number(),
   stripe_id: z.string().nullish(),
   archived: z.boolean().default(false).nullish(),
+  
+  // Auto top-up configuration
+  auto_top_up: AutoTopUpConfigSchema.nullish(),
 });
 
 export type ProductV2 = z.infer<typeof ProductV2Schema>;

@@ -7,6 +7,7 @@ export enum JobName {
   TriggerCheckoutReward = "trigger-checkout-reward",
   GenerateFeatureDisplay = "generate-feature-display",
   DetectBaseVariant = "detect-base-variant",
+  AutoTopUp = "auto-top-up",
 
   HandleProductsUpdated = "handle-products-updated",
   HandleCustomerCreated = "handle-customer-created",

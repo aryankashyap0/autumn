@@ -258,6 +258,7 @@ export const handleUpdateProductDetails = async ({
       is_add_on: newProduct.is_add_on,
       is_default: newProduct.is_default,
       archived: newProduct.archived,
+      auto_top_up: newProduct.auto_top_up,
     },
   });
 
@@ -280,4 +281,5 @@ export const handleUpdateProductDetails = async ({
   curProduct.is_add_on = newProduct.is_add_on ?? curProduct.is_add_on;
   curProduct.is_default = newProduct.is_default ?? curProduct.is_default;
   curProduct.archived = newProduct.archived ?? curProduct.archived;
+  curProduct.auto_top_up = newProduct.auto_top_up ?? curProduct.auto_top_up;
 };
