@@ -37,10 +37,10 @@ export const CustomerEntities = () => {
   return (
     <div className="flex w-full border-b mt-[2.5px] p-4 ">
       <SideAccordion title="Entities" value="entities">
-        <div className="grid grid-cols-8 auto-rows-[16px] gap-y-4 w-full items-center ">
+        <div className="grid grid-cols-3 gap-y-4 gap-x-2 w-full items-center min-w-0">
           {/* <SelectEntity /> */}
           <SidebarLabel>ID</SidebarLabel>
-          <div className="col-span-6 justify-end flex min-w-0">
+          <div className="col-span-2 justify-end flex min-w-0">
             <div className="w-full flex justify-end min-w-0">
               {entity.id ? (
                 <CopyButton text={entity?.id} className="max-w-full">
@@ -54,13 +54,13 @@ export const CustomerEntities = () => {
           {entity && (
             <>
               <SidebarLabel>Name</SidebarLabel>
-              <div className="col-span-6 flex justify-end min-w-0">
+              <div className="col-span-2 flex justify-end min-w-0">
                 <span className="truncate max-w-full" title={entity?.name}>
                   {entity?.name}
                 </span>
               </div>
               <SidebarLabel>Feature</SidebarLabel>
-              <div className="col-span-6 flex justify-end min-w-0">
+              <div className="col-span-2 flex justify-end min-w-0">
                 <span className="truncate max-w-full" title={featureName.toLowerCase()}>
                   {featureName.toLowerCase()}
                 </span>

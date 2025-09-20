@@ -47,8 +47,8 @@ export const CustomerDetails = ({
             </div>
           </div>
 
-          <span className="text-t3 text-xs font-medium col-span-2">Name</span>
-          <div className="col-span-6 justify-end flex min-w-0">
+          <span className="text-t3 text-xs font-medium">Name</span>
+          <div className="col-span-2 justify-end flex min-w-0">
             <Button
               variant="sidebarItem"
               onClick={() => {
@@ -64,8 +64,8 @@ export const CustomerDetails = ({
             </Button>
           </div>
 
-          <span className="text-t3 text-xs font-medium col-span-2">Email</span>
-          <div className="col-span-6 justify-end flex min-w-0">
+          <span className="text-t3 text-xs font-medium">Email</span>
+          <div className="col-span-2 justify-end flex min-w-0">
             <Button
               variant="sidebarItem"
               onClick={() => {
@@ -81,10 +81,10 @@ export const CustomerDetails = ({
             </Button>
           </div>
 
-          <span className="text-t3 text-xs font-medium col-span-2">
+          <span className="text-t3 text-xs font-medium">
             Fingerprint
           </span>
-          <div className="col-span-6 justify-end flex">
+          <div className="col-span-2 justify-end flex min-w-0">
             <Button
               variant="sidebarItem"
               className="text-t2 px-2 h-fit py-0.5"
@@ -101,10 +101,10 @@ export const CustomerDetails = ({
 
           {customer.processor?.id && (
             <>
-              <span className="text-t3 text-xs font-medium col-span-2 h-4">
+              <span className="text-t3 text-xs font-medium h-4">
                 Stripe
               </span>
-              <div className="col-span-6">
+              <div className="col-span-2 min-w-0">
                 <Link
                   className="!cursor-pointer hover:underline"
                   to={getStripeCusLink(customer.processor?.id, env)}

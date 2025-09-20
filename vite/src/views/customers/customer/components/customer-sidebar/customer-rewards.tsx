@@ -59,12 +59,12 @@ export const CustomerRewards = () => {
         <AddCouponDialogContent setOpen={setIsModalOpen} />
       </Dialog>
       <SideAccordion title="Rewards" value="rewards">
-        <div className="grid grid-cols-8 auto-rows-[16px] gap-y-4 w-full items-center">
+        <div className="grid grid-cols-3 gap-y-4 gap-x-2 w-full items-center min-w-0">
           <>
-            <span className="text-t3 text-xs font-medium col-span-2 h-4">
+            <span className="text-t3 text-xs font-medium h-4">
               Coupon
             </span>
-            <div className="col-span-6 flex justify-end min-w-0">
+            <div className="col-span-2 flex justify-end min-w-0">
               <Button
                 variant="sidebarItem"
                 onClick={() => setIsModalOpen(true)}
@@ -82,12 +82,12 @@ export const CustomerRewards = () => {
           </>
           {referred?.length > 0 && (
             <>
-              <span className="text-t3 text-xs font-medium col-span-2">
+              <span className="text-t3 text-xs font-medium">
                 Referrals
               </span>
 
               <Popover>
-                <div className="col-span-6 justify-end flex">
+                <div className="col-span-2 justify-end flex min-w-0">
                   <PopoverTrigger className="">
                     <Button variant="sidebarItem">
                       {referred.length} referred
@@ -121,11 +121,11 @@ export const CustomerRewards = () => {
                 </PopoverContent>
               </Popover>
 
-              <span className="text-t3 text-xs font-medium col-span-2">
+              <span className="text-t3 text-xs font-medium">
                 Activated
               </span>
               <Popover>
-                <div className="col-span-6 justify-end flex">
+                <div className="col-span-2 justify-end flex min-w-0">
                   <PopoverTrigger className="">
                     <Button variant="sidebarItem">
                       {referred.filter((r: any) => r.triggered).length}{" "}
@@ -168,11 +168,11 @@ export const CustomerRewards = () => {
           )}
           {redeemed?.length > 0 && (
             <>
-              <span className="text-t3 text-xs font-medium col-span-2">
+              <span className="text-t3 text-xs font-medium">
                 Referred by
               </span>
               <Tooltip>
-                <TooltipTrigger className="flex items-center gap-1 col-span-6 justify-end">
+                <TooltipTrigger className="flex items-center gap-1 col-span-2 justify-end min-w-0">
                   <Button variant="sidebarItem">
                     <Link
                       to={getRedirectUrl(
